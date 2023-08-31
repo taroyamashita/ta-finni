@@ -3,24 +3,18 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { app } from "../../firebase"
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { CustomForm } from "../../Components/Form/CustomForm";
+import { CustomTable } from "../../Components/Table/CustomTable";
 
-export const Main: React.FC = () => { 
+interface PatientDataProps {
+    patientData: [];
+    setPatientData: React.Dispatch<any>;
+}
+
+export const Main: React.FC<PatientDataProps> = (props: PatientDataProps) => { 
 
     const auth = getAuth(app)
     const [user] = useAuthState(auth);
-    const [userData, setUserData] = useState<any>(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            if (!user) return;
-            console.log(user)
-            const db = getFirestore(app);
-            const data = await getDoc(doc(db, "users", user.uid));
-            console.log(data.data());
-            setUserData(data.data());
-        }
-        fetchData();
-    }, []);
 
     function SignOut() {
         return auth.currentUser && (
@@ -30,7 +24,14 @@ export const Main: React.FC = () => {
     return(
         <div>
             <h1>Welcome {user?.displayName}</h1>
+
             <SignOut />
+            <div>
+                <CustomForm setPatientData={props.setPatientData} />
+            </div>
+            <div>
+                <CustomTable patientData = {props.patientData} />
+            </div>
         </div>
     )
 }
