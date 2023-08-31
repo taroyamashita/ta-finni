@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      {user ? <Main patientData={patientData} setPatientData={setPatientData} /> : <Login />}
+      {user ? <Main patientData={patientData} /> : <Login />}
     </div>
   );
 }

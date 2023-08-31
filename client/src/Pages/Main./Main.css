@@ -1,0 +1,45 @@
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  
+  .left-bar {
+    width: 20%; /* Adjust width as necessary */
+    background-color: #f2f2f2; /* Your preferred color */
+    padding: 1em;
+  }
+  
+  .right-content {
+    width: 80%; /* Adjust width as necessary */
+    padding: 1em;
+  }
+
+  .sign-out {
+    background-color: #f44;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sign-out:hover {
+    background-color: #d33;
+  }
+
+  ul > li {
+    cursor: pointer;
+    list-style-type: none;
+  }
+
+  li:hover {
+    background-color: #bdb9b9;
+    border-radius: 5px;
+  }
+
+  .selected {
+    background-color: #bdb9b9;
+    border-radius: 5px;
+  }

@@ -11,13 +11,8 @@ type FormData = {
   };
 
 
-interface CustomFormProps {
-    setPatientData: React.Dispatch<any>
-}
-export function CustomForm(props: CustomFormProps) {
- const {setPatientData} = props;
-  const [formStructure, setFormStructure] = useState([]);
-  const [formData, setFormData] = useState({});
+
+export function CustomForm() {
   const auth = getAuth(app);
   const [user] = useAuthState(auth)
   // logic for adding, removing, reordering form fields
@@ -45,21 +40,6 @@ export function CustomForm(props: CustomFormProps) {
     }
     reset();
   };
-
-
-  useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "patientData"), (snapshot) => {
-      const newData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setPatientData(newData);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
 
   const { register, setValue, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
