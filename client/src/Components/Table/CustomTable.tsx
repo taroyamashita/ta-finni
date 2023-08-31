@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableHead, TableRow, TableCell, TableBody, TableSortLabel } from "@mui/material";
-import { onSnapshot, collection } from "@firebase/firestore";
+import { Table, TableHead, TableRow, TableCell, TableBody, TableSortLabel, IconButton } from "@mui/material";
+import { onSnapshot, collection, doc, deleteDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 import { FormTemplate } from "../Form/CustomForm";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 interface Row extends Record<string, any> {
   id: number;
 }
@@ -62,6 +62,16 @@ export const CustomTable: React.FC<CustomTableProps> = (props: CustomTableProps)
     };
   }, []);
 
+  const deleteRecord = async (id: string) => {
+    try {
+      const recordRef = doc(db, "patientData", id);
+      console.log(recordRef);
+      await deleteDoc(recordRef);
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
+  };
+
   if (patientData.length === 0) {
     return <div>No data available</div>;
   }
@@ -91,6 +101,11 @@ export const CustomTable: React.FC<CustomTableProps> = (props: CustomTableProps)
               {keys.map((key, index) => (
                 <TableCell key={index}>{row[key] || ''}</TableCell>
               ))}
+              <TableCell>  {/* Add Delete button */}
+                <IconButton aria-label="delete" onClick={() => deleteRecord(row.id.toString())}>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
