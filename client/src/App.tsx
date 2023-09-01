@@ -40,6 +40,7 @@ function App() {
         id: doc.id,
         ...doc.data()
       }));
+      console.log(newData)
       setPatientData(newData);
     });
 

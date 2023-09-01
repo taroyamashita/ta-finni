@@ -29,3 +29,39 @@
   .submit-button:hover {
     background-color: #0056b3;
   }
+
+
+.form-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 8px 16px;
+    margin-top: 16px;
+    border-radius: 4px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;  /* This will set a gap of 16 pixels between each button */
+    margin-top: 20px; /* This will set a top margin of 20 pixels to move the buttons away from other elements */
+  }
+  

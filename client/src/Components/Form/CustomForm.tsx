@@ -48,18 +48,18 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ fields, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmitAndReset)}>
-      {fields.map((field, index) => (
-        <div key={index}>
-          <label>{field.label}</label>
-          <Controller
-            name={field.name}
-            control={control}
-            render={({ field }) => <input {...field} type={'text'} />}
-          />
-        </div>
-      ))}
-      <button type="submit">Submit</button>
-    </form>
+    {fields.map((field, index) => (
+      <div className="form-group" key={index}>  {/* <- Added the "form-group" class */}
+        <label>{field.label}</label>
+        <Controller
+          name={field.name}
+          control={control}
+          render={({ field }) => <input {...field} type={'text'} />}
+        />
+      </div>
+    ))}
+    <button type="submit">Submit</button>
+  </form>
   );
 };
 
@@ -126,10 +126,10 @@ export function CustomForm() {
   return (
     <>
       <DynamicForm fields={formTemplate.fields} onSubmit={savePatientData} />
+      <div className="button-group">
       <button onClick={addFormField}>Add form field</button>
-      <button onClick={() => {
-        saveFormTemplate(formTemplate)
-      }}>Save Form</button>
+      <button onClick={() => saveFormTemplate(formTemplate)}>Save Form</button>
+    </div>
 
     </>
   );   

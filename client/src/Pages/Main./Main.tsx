@@ -13,7 +13,7 @@ interface PatientDataProps {
 export const Main: React.FC<PatientDataProps> = (props: PatientDataProps) => { 
     const auth = getAuth(app);
     const [user] = useAuthState(auth);
-    const [formsOrTable, setFormsOrTable] = useState<string>("forms");
+    const [formsOrTable, setFormsOrTable] = useState<string>("table");
   
     function SignOut() {
       return auth.currentUser && (
